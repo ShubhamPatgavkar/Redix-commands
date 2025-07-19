@@ -1,0 +1,16 @@
+{
+  "name": "redix",
+  "version": "1.0.0",
+  "description": "\"my redix executed commands\"\r \"redix with node js configuration\"",
+  "main": "client.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ioredis": "^5.6.1",
+    "redis": "^5.6.0",
+    "redix": "^1.0.22"
+  }
+}

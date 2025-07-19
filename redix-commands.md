@@ -1,44 +1,95 @@
-to run/fetch the latest redis image 
+🧱 1. Clean Up Containers (Optional but Recommended)
 
-**docker run -d --name redis -p 6379:6379 redis:latest
+docker stop redis redis-commander RE
+
+docker rm redis redis-commander RE
+
+🐳 2. Start Redis with RedisJSON Enabled
+
+You need a Redis image that supports RedisJSON module. Use the redis/redis-stack image:
 
 
-to start the container
-PS C:\\Users\\shubham>  docker exec -it redis redis-cli**
+
+docker run -d --name redis -p 6379:6379 redis/redis-stack:latest
+
+✅ This comes with redis-cli and RedisJSON already built-in.
 
 
 
-**// String commands
-127.0.0.1:6379> set name "shubham is the king "**
+🧭 3. Start Redis Commander (UI for Redis)
 
-**OK**
+docker run -d --name redis-commander \\
 
-**127.0.0.1:6379> get name**
+&nbsp; --link redis \\
 
-**"shubham is the king "**
+&nbsp; -p 8081:8081 \\
 
-**127.0.0.1:6379>
+&nbsp; rediscommander/redis-commander:latest
 
-// mset for multiple
-127.0.0.1:6379> mset user:1 shubham user:2 shweta user:3 king**
+Access Redis UI at: http://localhost:8081
 
-**OK**
 
-**127.0.0.1:6379> mget user:1 user:3**
 
-**1) "shubham"**
+🧪 4. Redis CLI Commands Recap
 
-**2) "king"
+✅ Basic String Commands:
 
-127.0.0.1:6379> set count 0**
+set name "shubham is the king"
 
-**OK**
+get name
 
-**127.0.0.1:6379> incr count**
 
-**(integer) 1**
 
-**127.0.0.1:6379> incr count**
+mset user:1 shubham user:2 shweta user:3 king
 
-**(integer) 2**
+mget user:1 user:3
+
+
+
+set count 0
+
+incr count
+
+incr count
+
+
+✅ RedisJSON Commands (Requires Redis Stack):
+
+\# Set a string as JSON
+
+json.set bike $ '"KTM DUKE 200"'
+
+
+
+\# Get JSON string
+
+json.get bike
+
+
+
+\# Length of JSON string
+
+json.strlen bike $
+
+
+
+\# Numeric operations on JSON numbers
+
+json.set crashes $ 1
+
+json.numincrby crashes $ 2
+
+json.numincrby crashes $ -1
+
+json.nummultby crashes $ 5
+
+
+
+\# Set JSON array
+
+json.set jsonArr $ '\["Shubham", {"success": 2}, null]'
+
+json.get jsonArr
+
+json.get jsonArr $
 
