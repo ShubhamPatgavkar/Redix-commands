@@ -1,3 +1,3 @@
-# Redix-commands
-"my redix executed commands"
-"redix with node js configuration"
+# Redis-commands
+"my redis executed commands"
+"redis with node js configuration"
